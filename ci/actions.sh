@@ -28,14 +28,25 @@ EOS
     go version
     cd $GOROOT
     GO111MODULE=on
+
+    # for coveralls
     go install github.com/jandelgado/gcov2lcov@latest
+
+    # for codecov
+    go install github.com/axw/gocov/gocov@latest
+    go install github.com/AlekSi/gocov-xml@latest
 }
 
 function test_go() {
 	. /opt/ci/envgorc
     cd ${MODULE_PATH}
     go test --coverpkg ./pkg/... -coverprofile=.coverage.out ./pkg/...
+
+    # for coveralls
     gcov2lcov -infile .coverage.out -outfile /tmp/coverage.lcov
+
+    # for codecov
+    gocov convert .coverage.out | gocov-xml > /tmp/coverage.xml
 }
 
 $COMMAND

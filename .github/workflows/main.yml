@@ -17,6 +17,8 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: /tmp/coverage.lcov
+      - name: Upload coverage to Codecov
+        run: bash <(curl -s https://codecov.io/bash) -f /tmp/coverage.xml
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: List files in the repository
