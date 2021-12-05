@@ -15,7 +15,7 @@ jobs:
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@1.1.3
         with:
-          github-token: ${{ secrets.COVERALLS_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: /tmp/coverage.lcov
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
