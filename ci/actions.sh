@@ -17,7 +17,7 @@ function setup_go() {
         (mkdir -p $MODULE_PATH && cp -r $WD/. $MODULE_PATH)
 
     cat << EOS > /opt/ci/envgorc
-PATH=$PATH:/opt/ci/go/bin
+PATH=/opt/ci/go/bin:$PATH
 GOROOT=/opt/ci/go
 GOPATH=${GOPATH}
 GO111MODULE=off
@@ -25,7 +25,7 @@ MODULE_PATH=$MODULE_PATH
 EOS
 
 	. /opt/ci/envgorc
-    go get github.com/jandelgado/gcov2lcov@latest
+    go get github.com/jandelgado/gcov2lcov
 }
 
 function test_go() {
