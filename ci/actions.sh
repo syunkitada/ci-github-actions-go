@@ -25,6 +25,7 @@ export MODULE_PATH=$MODULE_PATH
 EOS
 
 	. /opt/ci/envgorc
+    cd $GOROOT
     GO111MODULE=on
     go install github.com/jandelgado/gcov2lcov@latest
 }
