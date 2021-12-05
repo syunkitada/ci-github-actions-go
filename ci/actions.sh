@@ -35,7 +35,12 @@ function test_go() {
 	. /opt/ci/envgorc
     cd ${MODULE_PATH}
     go test --coverpkg ./pkg/... -coverprofile=.coverage.out ./pkg/...
+
+    # for coveralls
     gcov2lcov -infile .coverage.out -outfile /tmp/coverage.lcov
+
+    # for codecov
+    cp .coverage.out $WD/coverage.out
 }
 
 $COMMAND
