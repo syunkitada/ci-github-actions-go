@@ -8,7 +8,7 @@ cienv:
 	ci/env.sh setup_go
 
 citest:
-	source /opt/ci/envgorc
+	. /opt/ci/envgorc
 	cd ${MODULE_PATH} && go test --coverpkg ./pkg/... -coverprofile=.coverage.out ./pkg/...
 	cd ${MODULE_PATH} && gcov2lcov-linux-amd64 -infile .coverage.out -outfile /tmp/coverage.lcov
 
