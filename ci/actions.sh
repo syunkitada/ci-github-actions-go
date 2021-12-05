@@ -25,7 +25,7 @@ MODULE_PATH=$MODULE_PATH
 EOS
 
 	. /opt/ci/envgorc
-    go install github.com/jandelgado/gcov2lcov@latest
+    go get github.com/jandelgado/gcov2lcov@latest
 }
 
 function test_go() {
