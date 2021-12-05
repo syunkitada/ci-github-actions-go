@@ -28,7 +28,12 @@ EOS
     go version
     cd $GOROOT
     GO111MODULE=on
+
+    # for coveralls
     go install github.com/jandelgado/gcov2lcov@latest
+
+    # for codecov
+    go install github.com/AlekSi/gocov-xml@latest
 }
 
 function test_go() {
@@ -40,7 +45,7 @@ function test_go() {
     gcov2lcov -infile .coverage.out -outfile /tmp/coverage.lcov
 
     # for codecov
-    cp .coverage.out $WD/coverage.out
+    gocov convert .coverage.out | gocov-xml > /tmp/coverage.xml
 }
 
 $COMMAND
