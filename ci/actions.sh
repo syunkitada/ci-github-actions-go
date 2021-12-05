@@ -28,4 +28,11 @@ MODULE_PATH=$MODULE_PATH
 EOS
 }
 
+function test_go() {
+	. /opt/ci/envgorc
+    cd ${MODULE_PATH}
+    go test --coverpkg ./pkg/... -coverprofile=.coverage.out ./pkg/...
+	gcov2lcov-linux-amd64 -infile .coverage.out -outfile /tmp/coverage.lcov
+}
+
 $COMMAND
