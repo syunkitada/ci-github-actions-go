@@ -2,7 +2,7 @@ mod:
 	GO111MODULE=on; go mod tidy; go mod vendor;
 
 test:
-	go test --coverpkg ./pkg/... -coverprofile=.coverage.out ./pkg/...
+	go test --coverpkg ./pkg/... -race -covermode atomic -coverprofile=.coverage.out ./pkg/...
 
 cienv:
 	ci/actions.sh setup_go

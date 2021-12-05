@@ -40,7 +40,7 @@ EOS
 function test_go() {
 	. /opt/ci/envgorc
     cd ${MODULE_PATH}
-    go test --coverpkg ./pkg/... -coverprofile=.coverage.out ./pkg/...
+	go test --coverpkg ./pkg/... -race -covermode atomic -coverprofile=.coverage.out ./pkg/...
 
     # for coveralls
     gcov2lcov -infile .coverage.out -outfile /tmp/coverage.lcov
