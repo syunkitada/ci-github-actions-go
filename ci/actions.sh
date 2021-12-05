@@ -17,7 +17,7 @@ function setup_go() {
         (mkdir -p $MODULE_PATH && cp -r $WD/. $MODULE_PATH)
 
     cat << EOS > /opt/ci/envgorc
-export PATH=$PATH:/opt/ci/go/bin:${GOPATH}/bin
+export PATH=/opt/ci/go/bin:${GOPATH}/bin:$PATH
 export GOROOT=/opt/ci/go
 export GOPATH=${GOPATH}
 export GO111MODULE=off
