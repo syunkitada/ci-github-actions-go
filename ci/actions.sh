@@ -17,22 +17,23 @@ function setup_go() {
         (mkdir -p $MODULE_PATH && cp -r $WD/. $MODULE_PATH)
 
     cat << EOS > /opt/ci/envgorc
-PATH=/opt/ci/go/bin:$PATH
-GOROOT=/opt/ci/go
-GOPATH=${GOPATH}
-GO111MODULE=off
-MODULE_PATH=$MODULE_PATH
+export PATH=$PATH:/opt/ci/go/bin:${GOPATH}/bin
+export GOROOT=/opt/ci/go
+export GOPATH=${GOPATH}
+export GO111MODULE=off
+export MODULE_PATH=$MODULE_PATH
 EOS
 
 	. /opt/ci/envgorc
-    go get github.com/jandelgado/gcov2lcov
+    GO111MODULE=on
+    go install github.com/jandelgado/gcov2lcov@latest
 }
 
 function test_go() {
 	. /opt/ci/envgorc
     cd ${MODULE_PATH}
     go test --coverpkg ./pkg/... -coverprofile=.coverage.out ./pkg/...
-    $GOPATH/bin/gcov2lcov -infile .coverage.out -outfile /tmp/coverage.lcov
+    gcov2lcov -infile .coverage.out -outfile /tmp/coverage.lcov
 }
 
 $COMMAND
