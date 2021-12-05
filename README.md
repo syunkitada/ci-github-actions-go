@@ -1,5 +1,6 @@
 # ci-github-actions-go
 
+![main workflow](https://github.com/syunkitada/ci-github-actions-go/actions/workflows/main.yml/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/syunkitada/ci-github-actions-go/badge.svg?branch=mod-actions)](https://coveralls.io/github/syunkitada/ci-github-actions-go?branch=mod-actions)
 
 - github actions のテスト用
