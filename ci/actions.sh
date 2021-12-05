@@ -17,7 +17,7 @@ function setup_go() {
         (mkdir -p $MODULE_PATH && cp -r $WD/. $MODULE_PATH)
 
     cat << EOS > /opt/ci/envgorc
-PATH=/opt/ci/go/bin:$PATH
+PATH=$PATH:/opt/ci/go/bin
 GOROOT=/opt/ci/go
 GOPATH=${GOPATH}
 GO111MODULE=off
@@ -32,7 +32,7 @@ function test_go() {
 	. /opt/ci/envgorc
     cd ${MODULE_PATH}
     go test --coverpkg ./pkg/... -coverprofile=.coverage.out ./pkg/...
-    $GOPATH/bin/gcov2lcov-linux-amd64 -infile .coverage.out -outfile /tmp/coverage.lcov
+    $GOPATH/bin/gcov2lcov -infile .coverage.out -outfile /tmp/coverage.lcov
 }
 
 $COMMAND
